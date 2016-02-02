@@ -197,8 +197,8 @@ class registrarForm {
 				$atributos ['redirLugar'] = true;
 				echo $this->miFormulario->enlace ( $atributos );
 				unset($atributos);
-				echo "<br>";
-				
+				echo "<br>"; 
+				echo "<br><br><a href='" . $variable_documento . "'><img src='" . $rutaBloque . "/css/images/pdf.png' width='50px'></a>";
 				
 				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 				$esteCampo = 'botonDocumentos';
@@ -210,7 +210,8 @@ class registrarForm {
 				$atributos ['ancho'] = '10%';
 				$atributos ['alto'] = '10%';
 				$atributos ['redirLugar'] = true;
-				echo $this->miFormulario->enlace ( $atributos );
+                echo $this->miFormulario->enlace ( $atributos );
+				unset($atributos); 
 				
 				
 				
