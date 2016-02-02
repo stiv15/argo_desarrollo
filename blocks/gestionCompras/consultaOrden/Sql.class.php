@@ -834,7 +834,10 @@ class Sql extends \Sql {
 				$cadenaSql .= "total_iva='" . $variable [8] . "', ";
 				$cadenaSql .= "total_iva_con='" . $variable [9] . "', ";
 				$cadenaSql .= (is_null ( $variable [10] ) == true) ? "marca=NULL, " : "marca='" . $variable [10] . "', ";
-				$cadenaSql .= (is_null ( $variable [11] ) == true) ? "serie=NULL  " : "serie='" . $variable [11] . "'  ";
+				$cadenaSql .= (is_null ( $variable [11] ) == true) ? "serie=NULL  " : "serie='" . $variable [11] . "',  ";
+				$cadenaSql .= (is_null ( $variable [13] ) == true) ? "referencia=NULL, " : "referencia='" . $variable [13] . "', ";
+				$cadenaSql .= (is_null ( $variable [14] ) == true) ? "placa=NULL,  " : "placa='" . $variable [14] . "',  ";
+				$cadenaSql .= (is_null ( $variable [15] ) == true) ? "observacion=NULL, " : "observacion='" . $variable [15] . "'  ";
 				$cadenaSql .= "WHERE id_elemento_ac ='" . $variable [12] . "'  ";
 				
 				break;
@@ -862,7 +865,12 @@ class Sql extends \Sql {
 					$cadenaSql .= "fecha_final_pol='" . $variable [12] . "', ";
 				}
 				$cadenaSql .= (is_null ( $variable [13] ) == true) ? "marca=NULL, " : "marca='" . $variable [13] . "', ";
-				$cadenaSql .= (is_null ( $variable [14] ) == true) ? "serie=NULL " : "serie='" . $variable [14] . "'  ";
+				$cadenaSql .= (is_null ( $variable [14] ) == true) ? "serie=NULL " : "serie='" . $variable [14] . "',  ";
+				
+				$cadenaSql .= (is_null ( $variable [16] ) == true) ? "referencia=NULL, " : "referencia='" . $variable [16] . "', ";
+				$cadenaSql .= (is_null ( $variable [17] ) == true) ? "placa=NULL,  " : "placa='" . $variable [17] . "',  ";
+				$cadenaSql .= (is_null ( $variable [18] ) == true) ? "observacion=NULL, " : "observacion='" . $variable [18] . "'  ";
+				
 				$cadenaSql .= "WHERE id_elemento_ac ='" . $variable [15] . "' ";
 				
 				break;

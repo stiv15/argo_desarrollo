@@ -13,6 +13,16 @@ $this->idioma ["unidad_ejecutoraTitulo"] ="Seleccione Unidad Ejecutoria ";
 
 
 
+$this->idioma ["referencia"] = "Referencia : ";
+$this->idioma ["referenciaTitulo"] = "Ingrese Referencia";
+
+$this->idioma ["placa"] = "Placa :";
+$this->idioma ["placaTitulo"] = "Ingrese Placa ";
+
+$this->idioma ["observaciones"] = "Observaciones :";
+$this->idioma ["observacionesTitulo"] = "Ingrese Observaciones";
+
+
 $this->idioma ["nombre_razon_proveedor"] = "Razón Social :";
 $this->idioma ["nombre_razon_proveedorTitulo"] = "Ingrese Razón Social";
 
