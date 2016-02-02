@@ -1,7 +1,19 @@
 
 <?php
 
-// --Consulta Acta Recibido .----------------------------------------
+
+
+$this->idioma ["referencia"] = "Referencia : ";
+$this->idioma ["referenciaTitulo"] = "Ingrese Referencia";
+
+$this->idioma ["placa"] = "Placa :";
+$this->idioma ["placaTitulo"] = "Ingrese Placa ";
+
+$this->idioma ["observaciones"] = "Observaciones :";
+$this->idioma ["observacionesTitulo"] = "Ingrese Observaciones";
+
+
+//------------------------------------
 
 
 $this->idioma ["desicion2"] = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp¿ Que desea realizar ?";

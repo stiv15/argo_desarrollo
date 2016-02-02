@@ -94,7 +94,7 @@ class redireccion {
 				$variable .= "&mensaje=error";
 				$variable .= "&id_orden=" . $valor [1];
 				$variable .= "&mensaje_titulo=" . $valor [0];
-				// $variable .= "&fecha_orden=" . $valor [2];
+ 
 				
 				if ($valor [3] == '') {
 					$variable .= "&registroOrden=true";
@@ -111,6 +111,13 @@ class redireccion {
 				$variable .= "&mensaje=error";
 				$variable .= "&mensaje_titulo=" . $valor [0];
 				$variable .= "&id_orden=" . $valor [1];
+
+				if ($valor [3] == '') {
+					$variable .= "&registroOrden=true";
+				} else {
+						
+					$variable .= "&arreglo=" . $valor [3];
+				}
 				
 				break;
 			

@@ -59,8 +59,6 @@ class RegistradorOrden {
 				
 				$valor_iva = $valor_iva [0] [0];
 				
-				
-				
 				if ($_REQUEST ['id_tipo_bien'] == 1) {
 					
 					$arreglo = array (
@@ -77,7 +75,10 @@ class RegistradorOrden {
 							$_REQUEST ['total_iva_con'],
 							($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 							($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
-							$_REQUEST ['id_orden'] 
+							$_REQUEST ['id_orden'],
+							($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+							($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+							($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 					);
 					
 					$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_1', $arreglo );
@@ -100,7 +101,10 @@ class RegistradorOrden {
 							$_REQUEST ['total_iva_con'],
 							($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 							($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
-							$_REQUEST ['id_orden'] 
+							$_REQUEST ['id_orden'],
+							($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+							($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+							($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 					);
 					
 					$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_1', $arreglo );
@@ -126,7 +130,10 @@ class RegistradorOrden {
 								NULL,
 								($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : NULL,
 								($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : NULL,
-								$_REQUEST ['id_orden'] 
+								$_REQUEST ['id_orden'],
+								($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+								($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+								($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 						);
 					} else if ($_REQUEST ['tipo_poliza'] == 1) {
 						$arreglo = array (
@@ -146,7 +153,10 @@ class RegistradorOrden {
 								$_REQUEST ['fecha_final'],
 								($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : NULL,
 								($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : NULL,
-								$_REQUEST ['id_orden'] 
+								$_REQUEST ['id_orden'],
+								($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+								($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+								($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 						);
 					}
 					
@@ -343,16 +353,16 @@ class RegistradorOrden {
 								$datos [$i] ['Marca'] = $objPHPExcel->getActiveSheet ()->getCell ( 'O' . $i )->getCalculatedValue ();
 								
 								$datos [$i] ['Serie'] = $objPHPExcel->getActiveSheet ()->getCell ( 'P' . $i )->getCalculatedValue ();
+								
+								$datos [$i] ['Referencia'] = $objPHPExcel->getActiveSheet ()->getCell ( 'Q' . $i )->getCalculatedValue ();
+								
+								$datos [$i] ['Placa'] = $objPHPExcel->getActiveSheet ()->getCell ( 'R' . $i )->getCalculatedValue ();
+								
+								$datos [$i] ['Observaciones'] = $objPHPExcel->getActiveSheet ()->getCell ( 'S' . $i )->getCalculatedValue ();
 							}
 							
 							for($i = 2; $i <= $highestRow; $i ++) {
 								
-								// "1";0;"Exento";
-								// "2";0;"Tarifa de Cero";
-								// "3";0.05;"5%";
-								// "4";0.04;"4%";
-								// "5";0.1;"10%";
-								// "6";0.16;"16%";
 								switch ($datos [$i] ['Iva']) {
 									
 									case "1" :
@@ -408,7 +418,10 @@ class RegistradorOrden {
 											($datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio'] * $IVA) + ($datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio']),
 											(is_null ( $datos [$i] ['Marca'] ) == true) ? null : trim ( $datos [$i] ['Marca'], "'" ),
 											(is_null ( $datos [$i] ['Serie'] ) == true) ? null : trim ( $datos [$i] ['Serie'], "'" ),
-											$_REQUEST ['id_orden'] 
+											$_REQUEST ['id_orden'],
+											(is_null ( $datos [$i] ['Referencia'] ) == true) ? null : trim ( $datos [$i] ['Referencia'], "'" ),
+											(is_null ( $datos [$i] ['Placa'] ) == true) ? null : trim ( $datos [$i] ['Placa'], "'" ),
+											(is_null ( $datos [$i] ['Observaciones'] ) == true) ? null : trim ( $datos [$i] ['Observaciones'], "'" ) 
 									);
 									$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_1', $arreglo );
 									
@@ -429,7 +442,10 @@ class RegistradorOrden {
 											(1 * $datos [$i] ['Valor_Precio'] * $IVA) + (1 * $datos [$i] ['Valor_Precio']),
 											(is_null ( $datos [$i] ['Marca'] ) == true) ? null : trim ( $datos [$i] ['Marca'], "'" ),
 											(is_null ( $datos [$i] ['Serie'] ) == true) ? null : trim ( $datos [$i] ['Serie'], "'" ),
-											$_REQUEST ['id_orden'] 
+											$_REQUEST ['id_orden'],
+											(is_null ( $datos [$i] ['Referencia'] ) == true) ? null : trim ( $datos [$i] ['Referencia'], "'" ),
+											(is_null ( $datos [$i] ['Placa'] ) == true) ? null : trim ( $datos [$i] ['Placa'], "'" ),
+											(is_null ( $datos [$i] ['Observaciones'] ) == true) ? null : trim ( $datos [$i] ['Observaciones'], "'" ) 
 									);
 									
 									$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_1', $arreglo );
@@ -456,7 +472,10 @@ class RegistradorOrden {
 												NULL,
 												(is_null ( $datos [$i] ['Marca'] ) == true) ? null : trim ( $datos [$i] ['Marca'], "'" ),
 												(is_null ( $datos [$i] ['Serie'] ) == true) ? null : trim ( $datos [$i] ['Serie'], "'" ),
-												$_REQUEST ['id_orden'] 
+												$_REQUEST ['id_orden'],
+												(is_null ( $datos [$i] ['Referencia'] ) == true) ? null : trim ( $datos [$i] ['Referencia'], "'" ),
+												(is_null ( $datos [$i] ['Placa'] ) == true) ? null : trim ( $datos [$i] ['Placa'], "'" ),
+												(is_null ( $datos [$i] ['Observaciones'] ) == true) ? null : trim ( $datos [$i] ['Observaciones'], "'" ) 
 										);
 									} else if ($datos [$i] ['Tipo_poliza'] == 1) {
 										
@@ -477,7 +496,10 @@ class RegistradorOrden {
 												$datos [$i] ['Fecha_Final_Poliza_Anio'] . "-" . $datos [$i] ['Fecha_Final_Poliza_Mes'] . "-" . $datos [$i] ['Fecha_Final_Poliza_Dia'],
 												(is_null ( $datos [$i] ['Marca'] ) == true) ? NULL : trim ( $datos [$i] ['Marca'], "'" ),
 												(is_null ( $datos [$i] ['Serie'] ) == true) ? NULL : trim ( $datos [$i] ['Serie'], "'" ),
-												$_REQUEST ['id_orden'] 
+												$_REQUEST ['id_orden'],
+												(is_null ( $datos [$i] ['Referencia'] ) == true) ? null : trim ( $datos [$i] ['Referencia'], "'" ),
+												(is_null ( $datos [$i] ['Placa'] ) == true) ? null : trim ( $datos [$i] ['Placa'], "'" ),
+												(is_null ( $datos [$i] ['Observaciones'] ) == true) ? null : trim ( $datos [$i] ['Observaciones'], "'" ) 
 										);
 									}
 									
