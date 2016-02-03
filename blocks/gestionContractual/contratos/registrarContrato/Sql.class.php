@@ -360,26 +360,28 @@ class Sql extends \Sql {
 			
 			case "consultarSolicitud" :
 				$cadenaSql = "SELECT DISTINCT ";
-				$cadenaSql .= "id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,
-				               valor_contratacion, unidad_tiempo_ejecucion ||' '||descripcion duracion, objeto_contrato ";
-				$cadenaSql .= "FROM solicitud_necesidad ";
-				$cadenaSql .= "JOIN parametros pr ON pr.id_parametro = ejecucion   ";
-				$cadenaSql .= "WHERE solicitud_necesidad.estado_registro= TRUE ";
+				$cadenaSql .= "id_sol_necesidad, sl.vigencia, sl.numero_solicitud, sl.fecha_solicitud,
+				               sl.valor_contratacion, sl.unidad_tiempo_ejecucion ||' '||pr.descripcion duracion, sl.objeto_contrato ";
+				$cadenaSql .= "FROM solicitud_necesidad sl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.id_parametro = sl.ejecucion   ";
+				$cadenaSql .= "LEFT JOIN contrato cn ON cn.solicitud_necesidad= id_sol_necesidad     ";
+				$cadenaSql .= "WHERE sl.estado_registro= TRUE ";
+				
 				
 				if ($variable ['vigencia'] != '') {
-					$cadenaSql .= " AND vigencia = '" . $variable ['vigencia'] . "' ";
+					$cadenaSql .= " AND sl.vigencia = '" . $variable ['vigencia'] . "' ";
 				}
 				if ($variable ['numero_solicitud'] != '') {
-					$cadenaSql .= " AND numero_solicitud = '" . $variable ['numero_solicitud'] . "' ";
+					$cadenaSql .= " AND sl.numero_solicitud = '" . $variable ['numero_solicitud'] . "' ";
 				}
 				
 				if ($variable ['fecha_inicial'] != '') {
-					$cadenaSql .= " AND fecha_solicitud BETWEEN CAST ( '" . $variable ['fecha_inicial'] . "' AS DATE) ";
+					$cadenaSql .= " AND sl.fecha_solicitud BETWEEN CAST ( '" . $variable ['fecha_inicial'] . "' AS DATE) ";
 					$cadenaSql .= " AND  CAST ( '" . $variable ['fecha_final'] . "' AS DATE)  ";
 				}
 				
-				$cadenaSql .= " ; ";
-				
+				$cadenaSql .= " AND cn.solicitud_necesidad IS NULL ; ";
+				 
 				break;
 			
 			case "Consultar_Solicitud_Particular" :
@@ -410,7 +412,7 @@ class Sql extends \Sql {
 				break;
 			
 			case "Consultar_Contratista" :
-				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta,ib.id_inf_bancaria,oc.id_orden_contr  ";
+				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta,ib.id_inf_bancaria,oc.id_orden_contr, sl.funcionario_solicitante  ";
 				$cadenaSql .= " FROM contratista cns";
 				$cadenaSql .= " LEFT JOIN inf_bancaria ib ON ib.contratista=cns.id_contratista ";
 				$cadenaSql .= " LEFT JOIN orden_contrato oc ON oc.contratista=cns.id_contratista";
@@ -428,7 +430,14 @@ class Sql extends \Sql {
 				$cadenaSql .= " direccion='" . $variable ['direccion'] . "', ";
 				$cadenaSql .= " telefono='" . $variable ['telefono'] . "', ";
 				$cadenaSql .= " digito_verificacion='" . $variable ['digito_verificacion'] . "', ";
-				$cadenaSql .= " correo='" . $variable ['correo'] . "', ";
+				
+				if ($variable ['correo'] != '') {
+					
+					$cadenaSql .= " correo='" . $variable ['correo'] . "', ";
+				} else {
+					
+					$cadenaSql .= " correo=NULL, ";
+				}
 				$cadenaSql .= " identificacion='" . $variable ['numero_identificacion'] . "', ";
 				$cadenaSql .= " genero='" . $variable ['genero'] . "', ";
 				$cadenaSql .= " tipo_naturaleza='" . $variable ['tipo_persona'] . "', ";
@@ -439,6 +448,7 @@ class Sql extends \Sql {
 				$cadenaSql .= " profesion='" . $variable ['profesion'] . "',";
 				$cadenaSql .= " especialidad='" . $variable ['especialidad'] . "'";
 				$cadenaSql .= " WHERE id_contratista='" . $variable ['id_contratista'] . "';";
+				 
 				break;
 			
 			case 'actualizar_informacion_bancaria' :
@@ -536,7 +546,6 @@ class Sql extends \Sql {
 				$cadenaSql .= " '" . $variable ['numero_convenio'] . "',";
 				$cadenaSql .= " '" . $variable ['vigencia_convenio'] . "',";
 				$cadenaSql .= " '" . $variable ['supervisor'] . "');";
-				
 				
 				break;
 			

@@ -134,7 +134,8 @@
 							"entidad_bancaria" => $contratista ['nombre_banco'],
 							"perfil" => $contratista ['perfil'],
 							"profesion" => $contratista ['profesion'],
-							"especialidad" => $contratista ['especialidad'] 
+							"especialidad" => $contratista ['especialidad'],
+							"supervisor" => $contratista ['funcionario_solicitante'] 
 					);
 					$_REQUEST = array_merge ( $_REQUEST, $arregloContratista );
 				}
@@ -1920,7 +1921,7 @@
 						unset ( $atributos );
 						
 						$atributos ["id"] = "division";
-						echo $this->miFormulario->division ( "inicio", $atributos ); 
+						echo $this->miFormulario->division ( "inicio", $atributos );
 						unset ( $atributos );
 						{
 							
@@ -2259,7 +2260,7 @@
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
 							} else {
-								$atributos ['seleccion'] = -1;
+								$atributos ['seleccion'] = - 1;
 							}
 							
 							$matrizItems = array (
