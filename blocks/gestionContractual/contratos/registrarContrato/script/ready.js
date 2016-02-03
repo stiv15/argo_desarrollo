@@ -20,19 +20,13 @@
 			    enablePagination: true,
 			    transitionEffect: "slideLeft",
 			    onStepChanging: function (event, currentIndex, newIndex){
-	                $resultado = $("#registrarContrato").validationEngine("validate");
+	        		return true;  
 
-	        		if ($resultado) {
-
-	        			return true;
-	        		}
-	        		return false;
-	        		;
 			    },
 			    onFinished: function (event, currentIndex)
 			    {
 			    	
-			    	 $("#registrarContrato").submit();
+
 			        
 			    },
 			    labels: {
@@ -52,22 +46,3 @@
 
 
 
-            $("#registrarContrato").validationEngine({
-            promptPosition : "bottomRight", 
-            scroll: false,
-            autoHidePrompt: true,
-            autoHideDelay: 1000
-	         });
-
-
-     $(function() {
-            $("#registrarContrato").submit(function() {
-		                $resultado = $("#registrarContrato").validationEngine("validate");
-
-		if ($resultado) {
-
-			return true;
-		}
-		return false;
-            });
-        });

@@ -652,7 +652,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required, custom[email] ';
+							$atributos ['validar'] = ' custom[email] ';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -1920,7 +1920,7 @@
 						unset ( $atributos );
 						
 						$atributos ["id"] = "division";
-						echo $this->miFormulario->division ( "inicio", $atributos );
+						echo $this->miFormulario->division ( "inicio", $atributos ); 
 						unset ( $atributos );
 						{
 							
