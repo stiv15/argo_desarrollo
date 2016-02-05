@@ -367,7 +367,6 @@ class Sql extends \Sql {
 				$cadenaSql .= "LEFT JOIN contrato cn ON cn.solicitud_necesidad= id_sol_necesidad     ";
 				$cadenaSql .= "WHERE sl.estado_registro= TRUE ";
 				
-				
 				if ($variable ['vigencia'] != '') {
 					$cadenaSql .= " AND sl.vigencia = '" . $variable ['vigencia'] . "' ";
 				}
@@ -381,7 +380,7 @@ class Sql extends \Sql {
 				}
 				
 				$cadenaSql .= " AND cn.solicitud_necesidad IS NULL ; ";
-				 
+				
 				break;
 			
 			case "Consultar_Solicitud_Particular" :
@@ -448,7 +447,7 @@ class Sql extends \Sql {
 				$cadenaSql .= " profesion='" . $variable ['profesion'] . "',";
 				$cadenaSql .= " especialidad='" . $variable ['especialidad'] . "'";
 				$cadenaSql .= " WHERE id_contratista='" . $variable ['id_contratista'] . "';";
-				 
+				
 				break;
 			
 			case 'actualizar_informacion_bancaria' :
@@ -555,6 +554,14 @@ class Sql extends \Sql {
 				$cadenaSql .= " FROM funcionario";
 				$cadenaSql .= " WHERE estado_registro=TRUE";
 				
+				break;
+			
+			case 'actualizar_supervisor' :
+				
+				$cadenaSql = " UPDATE funcionario";
+				$cadenaSql .= " SET codigo_verificacion='".$variable['digito_verificacion']."' ";
+				$cadenaSql .= " WHERE id_funcionario= '".$variable['supervisor']."';";
+				echo $cadenaSql;exit; 
 				break;
 			
 			/*

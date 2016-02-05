@@ -2473,6 +2473,8 @@
 				$valorCodificado .= "&id_orden_contrato=" . $contratista ['id_orden_contr'];
 			}
 			
+			
+			
 			/**
 			 * SARA permite que los nombres de los campos sean dinámicos.
 			 * Para ello utiliza la hora en que es creado el formulario para

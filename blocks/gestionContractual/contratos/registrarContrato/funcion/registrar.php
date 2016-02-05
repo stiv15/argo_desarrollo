@@ -24,7 +24,6 @@ class RegistradorContrato {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
-		
 		$conexion = "contractual";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
@@ -128,6 +127,17 @@ class RegistradorContrato {
 			$id_contratista = $contratista [0] [0];
 		}
 		
+		var_dump ( $_REQUEST );
+		
+		$arregloSupervisor = array (
+				"digito_verificacion" => $_REQUEST ['digito_supervisor'],
+				"supervisor" => $_REQUEST ['supervisor'] 
+		);
+		
+		$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_supervisor', $arregloSupervisor );
+		exit ();
+		$inf_bancaria = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arregloSupervisor, 'actualizar_supervisor' );
+		
 		$arreglo_contrato = array (
 				
 				"vigencia" => date ( 'Y' ),
@@ -172,28 +182,22 @@ class RegistradorContrato {
 				"fecha_registro" => date ( 'Y-m-d' ),
 				"contratista" => $id_contratista,
 				"solicitud_necesidad" => $_REQUEST ['id_solicitud_necesidad'],
-				"orden_contrato" => $_REQUEST ['id_orden_contrato'],
+				"orden_contrato" => $_REQUEST ['id_orden_contrato'] 
 		);
-		
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_contrato', $arreglo_contrato );
 		
 		$contrato = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_contrato, 'registrar_contrato' );
 		
-		
 		if ($contrato) {
 			
-			redireccion::redireccionar("Inserto",$arreglo_contrato);
-			exit;
-			
+			redireccion::redireccionar ( "Inserto", $arreglo_contrato );
+			exit ();
 		} else {
 			
-			redireccion::redireccionar("ErrorRegistro");
-			exit;
-			
+			redireccion::redireccionar ( "ErrorRegistro" );
+			exit ();
 		}
-		
-		
 	}
 }
 
