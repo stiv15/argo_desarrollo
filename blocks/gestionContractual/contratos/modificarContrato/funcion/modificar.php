@@ -111,7 +111,6 @@ class RegistradorContrato {
 					"especialidad" => $_REQUEST ['especialidad'],
 					"fecha_registro" => date ( 'Y-m-d' ) 
 			);
-			
 			$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_contratista', $arreglo_contratista );
 			
 			$contratista = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda", $arreglo_contratista, 'registrar_contratista' );

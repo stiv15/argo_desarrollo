@@ -718,7 +718,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required, custom[email] ';
+							$atributos ['validar'] = 'custom[email] ';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -1941,7 +1941,7 @@
 									</table>";
 							} else {
 								
-								echo "<center>No Existen Registros Presupuestales Asociads</center>";
+								echo "<center>No Existen Registros Presupuestales Asociados</center>";
 							}
 						}
 						echo $this->miFormulario->agrupacion ( 'fin' );

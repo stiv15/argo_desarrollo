@@ -62,7 +62,7 @@ class Sql extends \Sql {
 				$cadenaSql .= "'" . $variable ['apellido'] . "', ";
 				$cadenaSql .= "'" . $variable ['identificacion'] . "', ";
 				$cadenaSql .= "'" . $variable ['codigo'] . "', ";
-				$cadenaSql .= "'" . $variable ['correo'] . "', ";
+				$cadenaSql .= "'" . $variable ['correo'] . "', correo";
 				$cadenaSql .= "'0', ";
 				$cadenaSql .= "'" . time () . "' ";
 				$cadenaSql .= ")";
@@ -428,7 +428,13 @@ class Sql extends \Sql {
 				$cadenaSql .= " direccion='" . $variable ['direccion'] . "', ";
 				$cadenaSql .= " telefono='" . $variable ['telefono'] . "', ";
 				$cadenaSql .= " digito_verificacion='" . $variable ['digito_verificacion'] . "', ";
-				$cadenaSql .= " correo='" . $variable ['correo'] . "', ";
+				
+				if ($variable ['correo'] == '') {
+					$cadenaSql .= " correo=NULL, ";
+				} else {
+					$cadenaSql .= " correo='" . $variable ['correo'] . "', ";
+				}
+				
 				$cadenaSql .= " identificacion='" . $variable ['numero_identificacion'] . "', ";
 				$cadenaSql .= " genero='" . $variable ['genero'] . "', ";
 				$cadenaSql .= " tipo_naturaleza='" . $variable ['tipo_persona'] . "', ";
