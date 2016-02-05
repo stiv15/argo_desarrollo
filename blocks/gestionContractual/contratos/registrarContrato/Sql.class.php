@@ -561,7 +561,7 @@ class Sql extends \Sql {
 				$cadenaSql = " UPDATE funcionario";
 				$cadenaSql .= " SET codigo_verificacion='".$variable['digito_verificacion']."' ";
 				$cadenaSql .= " WHERE id_funcionario= '".$variable['supervisor']."';";
-				echo $cadenaSql;exit; 
+				 
 				break;
 			
 			/*

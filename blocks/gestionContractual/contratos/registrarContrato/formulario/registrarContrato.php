@@ -1876,7 +1876,7 @@
 									</table>";
 							} else {
 								
-								echo "<center>No Existen Registros Presupuestales Asociads</center>";
+								echo "<center>No Existen Registros Presupuestales Asociados</center>";
 							}
 						}
 						echo $this->miFormulario->agrupacion ( 'fin' );

@@ -127,7 +127,7 @@ class RegistradorContrato {
 			$id_contratista = $contratista [0] [0];
 		}
 		
-		var_dump ( $_REQUEST );
+		
 		
 		$arregloSupervisor = array (
 				"digito_verificacion" => $_REQUEST ['digito_supervisor'],
@@ -135,7 +135,7 @@ class RegistradorContrato {
 		);
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_supervisor', $arregloSupervisor );
-		exit ();
+		
 		$inf_bancaria = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arregloSupervisor, 'actualizar_supervisor' );
 		
 		$arreglo_contrato = array (
